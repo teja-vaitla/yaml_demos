@@ -1,0 +1,382 @@
+swagger: '2.0'
+info:
+  title: SunSpec oSDX API
+  description: SunSpec oSDX API
+  version: "1.0.0"
+host: api.opendem.com
+schemes:
+  - https
+basePath: /pie
+produces:
+  - application/json
+
+paths:
+  /plant/{Id}:
+    get:
+      summary: Plant Information
+      description: |
+        represents a standard block describing information related to a power plant
+
+      tags:
+        - Plant
+      parameters:
+        - name: Id 
+          in: path
+          description: plant Id
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: represents a standard block describing information related to a power plant
+          schema:
+              $ref: '#/definitions/plant'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+  /plant/location/{Id}:
+    get:
+      summary: Plant Information
+      description: |
+        represents a standard block describing information related to location of a given power plant
+
+      tags:
+        - Plant
+      parameters:
+        - name: Id 
+          in: path
+          description: plant Id
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: represents a standard block describing information related to location of a given power plant
+          schema:
+              $ref: '#/definitions/location'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+  /plant/nameplate/{Id}:
+    get:
+      summary: Plant Information
+      description: |
+        represents a standard block describing information related to nameplate of a given power plant
+
+      tags:
+        - Plant
+      parameters:
+        - name: Id 
+          in: path
+          description: plant Id
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: represents a standard block describing information related to nameplate of a given power plant
+          schema:
+              $ref: '#/definitions/nameplate'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+  /plant/designElement/{Id}:
+    get:
+      summary: Plant Information
+      description: |
+        represents a standard block describing information related to design elements of given power plant
+
+      tags:
+        - Plant
+      parameters:
+        - name: Id 
+          in: path
+          description: plant Id
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: represents a standard block describing information related to design elements of given power plant
+          schema:
+              $ref: '#/definitions/plant'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'
+  /plant/capabilites/{Id}:
+    get:
+      summary: Plant Information
+      description: |
+        represents a standard block describing information related to capabilites of given power plant
+
+      tags:
+        - Plant
+      parameters:
+        - name: Id 
+          in: path
+          description: plant Id
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: represents a standard block describing information related to capabilites of given power plant
+          schema:
+              $ref: '#/definitions/capabilites'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'
+  /plant/pvArray/{Id}:
+    get:
+      summary: Plant Information
+      description: |
+        represents a standard block describing information related to pv Array parameters of given power plant
+
+      tags:
+        - Plant
+      parameters:
+        - name: Id 
+          in: path
+          description: plant Id
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: represents a standard block describing information related to pv Array parameters of given power plant
+          schema:
+              $ref: '#/definitions/pvArray'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'
+            
+definitions:
+  plant:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: represents a value generated in accordance with the UUID Version 4 Random algorithm as described in RFC 4122 section 4.4
+          format: int32
+        v:
+          type: number
+          description: represents the version number describing the plant element specification with which the entire plant block complies
+          format: float
+        locale:
+          type: string
+          description: represents  language in which allvalues in the plant element and any other elements in the plant standard block content model are represented
+        name:
+          type: string
+          description: represents the common name of the plant element, that is its parent
+        description:
+          type: string
+          description: represents a text description of the plant element, that is its parent.
+        notes:
+          type: string
+          description: additional info
+        activationDate:
+          type: string
+          description: represents the date the power plant described by the plant element that is its parent was actively delivering power to the utility grid or energy off-taker
+          format: date
+        location:
+          $ref: '#/definitions/location'
+        nameplate:
+          $ref: '#/definitions/nameplate'
+        pvArray:
+          $ref: '#/definitions/pvArray'
+          
+        designElement:
+          $ref: '#/definitions/designElement'
+        capabilites:
+          $ref: '#/definitions/capabilites'
+  nameplate:
+    type: object
+    properties:
+      installedDCCapacity:
+        type: number
+        description: represents the total installed direct current capacity of the power plant expressed in kW
+        format: float 
+      installedACCapacity:
+        type: number
+        description: represents  the total installed alternating current capacity of the power plant expressed in kW
+        format: float 
+      installedPanelArea:
+        type: integer
+        description: represents the total surface area of panels installed at the power plant expressed in m2
+        format: int32 
+      nominalPowerRating:
+        type: number
+        description: represents the total nominal power of the power plant expressed in kWp
+        format: float 
+  location:
+    type: object
+    properties:
+      latitude:
+        type: number
+        description:  represents the decimal degrees north or south of the equator of the plant element that is its ascendant
+        format: float 
+      longitude:
+        type: number
+        description: represents the decimal degrees east or west from the Prime Meridian of the plant element that is its ascendant.
+        format: float 
+      line1:
+        type: string
+        description: represents the first line of detailed address information of the plant element that is its ascendant.
+      line2:
+        type: string
+        description: represents the second line of detailed address information of the plant element that is its ascendant
+      city:
+        type: string
+        description: represents the city in which or most near to the plant element that is its ascendant.
+      stateProvince:
+        type: string
+        description: represents the subdivision (e.g., province or state) within the country of the plant element that is its ascendant
+      country:
+        type: string
+        description: represents the country of the plant element that is its ascendant.
+      postal:
+        type: string
+        description: represents the geographical area of the plant element that is its ascendant, as delineated by the local postal system.
+      elevation:
+        type: number
+        description: represents the average elevation of the plant element that is its ascendant
+        format: float 
+      timezone:
+        type: string
+        description: represents the time zone of the plant element that is its ascendant. 
+      mapURL:
+        type: string
+        description: represents  an aerial or other image of the plant, or a map application such as google earth that can be used to render and image of the plant
+  designElement:
+    type: object
+    properties:
+      plantType:
+        type: string
+        description: Represents plantType. Possible Values- Residential, Commercial, Industrial, Utility
+        enum:
+        - Residential
+        - Commercial
+        - Industrial
+        - Utility
+      inverterType:
+        type: string
+        description: Represents inverterType. Possible Values- Micro, String, Central
+        enum:
+        - Micro
+        - String
+        - Central
+      DCOptimized:
+        type: string
+        description: Represents wether  DCOptimized or not. Possible Values- None, String, Panel
+        enum:
+        - None
+        - String
+        - Panel
+      mountingType:
+        type: string
+        description: Represents mountingType. Possible Values- Fixed, Horizontal, Tilted, Azimuth, Dual. Mixed
+        enum:
+        - Fixed
+        - Horizontal
+        - Tilted
+        - Azimuth
+        - Dual
+        - Mixed
+      weatherType:
+        type: string
+        description: Represents weatherType. Possible Values- Onsite, Satellite, Local, Model, Mixed
+        enum:
+        - Onsite
+        - Satellite
+        - Local
+        - Model
+        - Mixed
+  capabilites:
+    type: object      
+    properties:
+      fixedWatt:
+        type: boolean
+        description: Represents the fixed watt control capability is present at the power plant
+      fixedPF:
+        type: boolean
+        description: Represents the fixed power factor control capability exists at the power plant
+      fixedVAr:
+        type: boolean
+        description: Represents the fixed reactive power control capability is present at the power plant
+      voltVAr:
+        type: boolean
+        description: Represents the volt reactive power control capability is present at the power plant
+      freqWatt:
+        type: boolean
+        description: Represents the frequency watt control capability is present at the power plant
+      dynamicVAr:
+        type: boolean
+        description: Represents the dynamic reactive power control capability is present at the power plant
+      lowVoltageRideThrough:
+        type: boolean
+        description: Represents the low voltage ride through capability is present at the power plant
+      highVoltageRideThrough:
+        type: boolean
+        description: Represents the high voltage ride through capability is present at the power plant
+      charge:
+        type: boolean
+        description: Represents the capability to control storage charging is present at the power plant
+      discharge:
+        type: boolean
+        description: Represents the capability to control storage discharging is present at the power plant
+  pvArray:
+    type: object
+    properties:
+      description:
+        type: string
+        description: represents description or Identifier
+      numModules:
+        type: integer
+        description: represents number of modules, or panels, in the array
+        format: int32 
+      m2:
+        type: integer
+        description: represents the total surface area of panels expressed in m2
+        format: int32 
+      orientation:
+        type: number
+        description: represents the orientation of the array in degrees from true North.
+        format: float 
+      trackerType:
+        type: string
+        description: represents the type of tracker employed. Fixed Array, Single-Axis Tracker, Dual-Axis Tracker
+      fixedTilt:
+        type: number
+        description: represents the fixed tilt value if not tracked.
+        format: float 
+      fixedAzimuth:
+        type: number
+        description: represents the fixed azimuth value if not tracked.
+        format: float 
+      dcRating:
+        type: number
+        description: represents total DC STC rating of the array in kW
+        format: float 
+      installType:
+        type: string
+        description: represents rooftop/Ground
+      num:
+        type: integer
+        description: represents number of arrays of this type
+        format: int32 
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string

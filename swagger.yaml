@@ -1,0 +1,655 @@
+swagger: '2.0'
+info:
+  title: SunSpec oSDX API - Environmental Model
+  description: |
+   Environmental	Data	Models
+    ------------------------------------------------------------------------------------------------------------------------------
+   Sunspec Alliance defines the following models under environmental category
+   
+    Irradiance Model (302):
+  
+      This model supports GHI, POAI, DFI, DNI & OTI data points.
+    
+    Back of	Module Temperature	Model (303):
+    
+      This model supports the back of module temperature data points. 
+    
+    Inclinometer Model (304):
+    
+      This model supports X-, Y- and Z-Axis	inclination.
+    
+    GPS Model (305):
+    
+     This model supports the timestamp, date, location, latitude, longitude and altitude	data points.
+    
+    Reference	Point	Model	(306):
+     
+      This model	supports the GHI, current, voltage	and	temperature	data points. A Reference  Point could	be an Array, a SubArray, a String, a Module, or a ReferenceCell.
+    
+    Base Meteorological	Model	(307):
+    
+      This model	supports basic meteorological data	such as	ambient	temp, humidity,	pressure, etc, in a	single	model.	
+    
+    Mini Meteorological Model (308):
+    
+     This map supports a	limited	set	of	environmental	data for smaller environmental devices. Data	includes global	horizontal	irradiance,	back of	module temperature,	ambient	temperature,and	wind	speed.
+     
+     ---------------------------------------------------------------------------------------------------------------------------
+      Allowed HTTPs requests:
+      --------------------------------------------------------------------------------------------------------------------------
+      
+      GET: Get a Model or list of Models
+      
+      
+  version: "1.0.0"
+host: api.opendem.com
+schemes:
+  - https
+basePath: /environmental
+produces:
+  - application/json
+
+paths:
+  /InclinometerModel:
+    get:
+      summary: List of all InclinometerModels of a given site
+      description: |
+        Get List of all InclinometerModels of a given site
+
+      tags:
+        - InclinometerModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: List of all InclinometerModels of a given site
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/InclinometerModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /InclinometerModel/{deviceId}:
+    get:
+      summary: InclinometerModel under given site
+      description: |
+        Get InclinometerModel under given site
+
+      tags:
+        - InclinometerModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+        - name: deviceId 
+          in: path
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description:  InclinometerModel of a given site
+          schema:
+            $ref: '#/definitions/InclinometerModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /GPSModel:
+    get:
+      summary: List of all GPSModels of a given site
+      description: |
+        Get List of all GPSModels of a given site
+
+      tags:
+        - GPSModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: List of all GPSModels of a given site
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GPSModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /GPSModel/{deviceId}:
+    get:
+      summary: GPSModel under given site
+      description: |
+        Get GPSModel under given site
+
+      tags:
+        - GPSModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+        - name: deviceId 
+          in: path
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description:  GPSModel of a given site
+          schema:
+            $ref: '#/definitions/GPSModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /ReferencePointModel:
+    get:
+      summary: List of all ReferencePointModels of a given site
+      description: |
+        Get List of all ReferencePointModels of a given site
+
+      tags:
+        - ReferencePointModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: List of all ReferencePointModels of a given site
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReferencePointModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /ReferencePointModel/{deviceId}:
+    get:
+      summary: ReferencePointModel under given site
+      description: |
+        Get ReferencePointModel under given site
+
+      tags:
+        - ReferencePointModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+        - name: deviceId 
+          in: path
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description:  ReferencePointModel of a given site
+          schema:
+            $ref: '#/definitions/ReferencePointModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /BaseMetModel:
+    get:
+      summary: List of all BaseMetModels of a given site
+      description: |
+        Get List of all BaseMetModels of a given site
+
+      tags:
+        - BaseMetModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: List of all BaseMetModels of a given site
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BaseMetModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /BaseMetModel/{deviceId}:
+    get:
+      summary: BaseMetModel under given site
+      description: |
+        Get BaseMetModel under given site
+
+      tags:
+        - BaseMetModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+        - name: deviceId 
+          in: path
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description:  BaseMetModel of a given site
+          schema:
+            $ref: '#/definitions/BaseMetModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /MiniMetModel:
+    get:
+      summary: List of all MiniMetModels of a given site
+      description: |
+        Get List of all MiniMetModels of a given site
+
+      tags:
+        - MiniMetModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: List of all MiniMetModels of a given site
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MiniMetModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /MiniMetModel/{deviceId}:
+    get:
+      summary: MiniMetModel under given site
+      description: |
+        Get MiniMetModel under given site
+
+      tags:
+        - MiniMetModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+        - name: deviceId 
+          in: path
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description:  MiniMetModel of a given site
+          schema:
+            $ref: '#/definitions/MiniMetModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /IrradianceModel:
+    get:
+      summary: List of all IrradianceModels of a given site
+      description: |
+        Get List of all IrradianceModels of a given site
+
+      tags:
+        - IrradianceModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: List of all IrradianceModels of a given site
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IrradianceModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /IrradianceModel/{deviceId}:
+    get:
+      summary: IrradianceModel under given site
+      description: |
+        Get IrradianceModel under given site
+
+      tags:
+        - IrradianceModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+        - name: deviceId 
+          in: path
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description:  IrradianceModel of a given site
+          schema:
+            $ref: '#/definitions/IrradianceModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /BoMTemperatureModel:
+    get:
+      summary: List of all BoMTemperatureModels of a given site
+      description: |
+        Get List of all BoMTemperatureModels of a given site
+
+      tags:
+        - BoMTemperatureModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description: List of all BoMTemperatureModels of a given site
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BoMTemperatureModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /BoMTemperatureModel/{deviceId}:
+    get:
+      summary: BoMTemperatureModel under given site
+      description: |
+        Get BoMTemperatureModel under given site
+
+      tags:
+        - BoMTemperatureModel
+      parameters:
+        - name: siteId 
+          in: query
+          description: device location
+          required: true
+          type: integer
+          format: int32
+        - name: deviceId 
+          in: path
+          description: device location
+          required: true
+          type: integer
+          format: int32
+      responses: 
+        200:
+          description:  BoMTemperatureModel of a given site
+          schema:
+            $ref: '#/definitions/BoMTemperatureModel'
+        default:
+          description: Unexpected Error 
+          schema:
+            $ref: '#/definitions/Error'  
+
+definitions:
+
+  IrradianceModel:
+    type: object
+    properties:
+      ID:
+        type: integer
+        description: SunSpec Model Number
+
+      GHI:
+        type: integer
+        description: Global Horizontal Irradiance
+
+      POAI:
+        type: integer
+        description: Plane-of-Array Irradiance
+
+      DFI:
+        type: integer
+        description: Diffuse Irradiance
+
+      DNI:
+        type: integer
+        description: Direct Normal Irradiance
+
+      OTI:
+        type: integer
+        description: Other Irradiance
+
+  BoMTemperatureModel:
+    type: object
+    properties:
+      ID:
+        type: integer
+        description: SunSpec Model Number
+
+      TmpBOM:
+        type: integer
+        description: Back of module temperature measurement
+
+  InclinometerModel:
+    type: object
+    properties:
+      ID:
+        type: integer
+        description: SunSpec Model Number
+
+      Inclx:
+        type: integer
+        description: X-Axis inclination
+
+      Incly:
+        type: integer
+        description: Y-Axis inclination
+
+      Inclz:
+        type: integer
+        description: Z-Axis inclination
+
+  GPSModel:
+    type: object
+    properties:
+      ID:
+        type: integer
+        description: SunSpec Model Number
+
+      Tm:
+        type: string
+        description: UTC 24 hour time stamp to millisecond hhmmss.sssZ format
+
+      Date:
+        type: string
+        description: UTC Date string YYYYMMDD format
+
+      Loc:
+        type: string
+        description: Location string (40 chars max)
+
+      Lat:
+        type: integer
+        description: Lattitude with seven degrees of precision
+
+      Long:
+        type: integer
+        description: Longitude with seven degrees of precision
+
+      Alt:
+        type: integer
+        description: Altitude measurement in meters
+
+  ReferencePointModel:
+    type: object
+    properties:
+      ID:
+        type: integer
+        description: SunSpec Model Number
+
+      GHI:
+        type: integer
+        description: Global Horizontal Irradiance
+
+      A:
+        type: integer
+        description: Current measurment at reference point
+
+      V:
+        type: integer
+        description: Voltage  measurment at reference point
+
+      Tmp:
+        type: integer
+        description: Temperature measurment at reference point
+
+  BaseMetModel:
+    type: object
+    properties:
+      ID:
+        type: integer
+        description: SunSpec Model Number
+
+      TmpAmb:
+        type: integer
+        description: Ambient Temperature
+
+      RH:
+        type: integer
+        description: Relative Humidity
+
+      Pres:
+        type: integer
+        description: Barometric Pressure
+
+      WndSpd:
+        type: integer
+        description: Wind Speed
+
+      WndDir:
+        type: integer
+        description: Wind Direction
+
+      Rain:
+        type: integer
+        description: Rainfall
+
+      Snw:
+        type: integer
+        description: Snow Depth
+
+      PPT:
+        type: integer
+        description: Precipitation Type (WMO 4680 SYNOP code reference)
+
+      ElecFld:
+        type: integer
+        description: Electric Field
+
+      SurWet:
+        type: integer
+        description: Surface Wetness
+
+      SoilWet:
+        type: integer
+        description: Soil Wetness
+
+  MiniMetModel:
+    type: object
+    properties:
+      ID:
+        type: integer
+        description: SunSpec Model Number
+
+      GHI:
+        type: integer
+        description: Global Horizontal Irradiance
+
+      TmpBOM:
+        type: integer
+        description: Back of module temperature measurement
+
+      TmpAmb:
+        type: integer
+        description: Ambient Temperature
+
+      WndSpd:
+        type: integer
+        description: Wind Speed
+
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
